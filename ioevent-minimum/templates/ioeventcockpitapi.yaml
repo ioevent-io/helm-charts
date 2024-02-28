@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.ioeventCockpitApi.name }}
+  labels:
+    app: {{ .Values.ioeventCockpitApi.name }}
+spec:
+  replicas: {{ .Values.ioeventCockpitApi.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.ioeventCockpitApi.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.ioeventCockpitApi.name }}
+    spec:
+      containers:
+      - name: {{ .Values.ioeventCockpitApi.name }}
+        image: {{ .Values.ioeventCockpitApi.image }}
+        ports:
+        - containerPort: {{ .Values.ioeventCockpitApi.containerPort }}
+        env:
+        - name: ES_URL
+          value: {{ .Values.ioeventCockpitApi.esUrl }}
+        - name: KAFKA_BOOTSTRAP_SERVER
+          value: {{ .Values.ioeventCockpitApi.kafkaBootstrapServer }}
+        - name: KAFKA_GROUP_ID
+          value: {{ .Values.ioeventCockpitApi.kafkaGroupId }}
+        readinessProbe:
+          httpGet:
+            path: {{ .Values.ioeventCockpitApi.readinessProbePath }}
+            port: {{ .Values.ioeventCockpitApi.containerPort }}
+          initialDelaySeconds: {{ .Values.ioeventCockpitApi.readinessProbeInitialDelay }}
+        livenessProbe:
+          httpGet:
+            path: {{ .Values.ioeventCockpitApi.livenessProbePath }}
+            port: {{ .Values.ioeventCockpitApi.containerPort }}
+          initialDelaySeconds: {{ .Values.ioeventCockpitApi.livenessProbeInitialDelay }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.ioeventCockpitApiService.name }}
+spec:
+  selector:
+    app: {{ .Values.ioeventCockpitApi.name }}
+  type: {{ .Values.ioeventCockpitApiService.serviceType }}
+  ports:
+    - protocol: TCP
+      port: {{ .Values.ioeventCockpitApiService.port }}
+      targetPort: {{ .Values.ioeventCockpitApiService.targetPort }}
+      nodePort: {{ .Values.ioeventCockpitApiService.nodePort }}

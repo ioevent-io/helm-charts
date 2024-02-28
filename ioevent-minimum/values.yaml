@@ -1,0 +1,33 @@
+ioeventCockpitApi:
+  name: ioevent-cockpit-api
+  image: ioevent/cockpit-api:latest
+  replicas: 1
+  containerPort: 8761
+  esUrl: http://elasticsearch-service:9200
+  kafkaBootstrapServer: my-cluster-kafka-bootstrap:9092
+  kafkaGroupId: ioevent-cockpit-api
+  readinessProbePath: /api/ping
+  livenessProbePath: /api/ping
+  readinessProbeInitialDelay: 30
+  livenessProbeInitialDelay: 60
+
+ioeventCockpitApiService:
+  name: ioevent-cockpit-api-service
+  serviceType: LoadBalancer
+  port: 8761
+  targetPort: 8761
+  nodePort: 30003
+
+ioeventui:
+  name: ioeventui
+  image: ioevent/cockpit-ui:latest
+  replicas: 1
+  containerPort: 3000
+  apiUrl: "http://ioeventcockpitapi.com/api"
+  uiRegistration: "true#####"
+
+ioeventuiservice:
+  name: ioeventui-service
+  port: 3000
+  targetPort: 3000
+  serviceType: NodePort

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.ioeventui.name }}
+spec:
+  replicas: {{ .Values.ioeventui.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.ioeventui.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.ioeventui.name }}
+    spec:
+      containers:
+      - name: {{ .Values.ioeventui.name }}
+        image: {{ .Values.ioeventui.image }}
+        ports:
+        - containerPort: {{ .Values.ioeventui.containerPort }}
+        env:
+        - name: COCKPit_API_URL
+          value: "{{ .Values.ioeventui.apiUrl }}"
+        - name: COCKPit_UI_REGISTRATION
+          value: "{{ .Values.ioeventui.uiRegistration }}"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.ioeventuiservice.name }}
+spec:
+  selector:
+    app: {{ .Values.ioeventui.name }}
+  ports:
+  - protocol: TCP
+    port: {{ .Values.ioeventuiservice.port }}
+    targetPort: {{ .Values.ioeventuiservice.targetPort }}
+  type: {{ .Values.ioeventuiservice.serviceType }}

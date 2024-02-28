@@ -1,0 +1,50 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: Kafka
+metadata:
+  name: {{ .Values.kafka.name }}
+spec:
+  kafka:
+    version: {{ .Values.kafka.version }}
+    replicas: {{ .Values.kafka.replicas }}
+    listeners:
+      - name: plain
+        port: {{ .Values.kafka.plainListenerPort }}
+        type: internal
+        tls: false
+      - name: tls
+        port: {{ .Values.kafka.tlsListenerPort }}
+        type: internal
+        tls: true
+      - name: external
+        port: {{ .Values.kafka.externalListenerPort }}
+        type: {{ .Values.kafka.listenerType }}
+        tls: false
+    config:
+      offsets.topic.replication.factor: {{ .Values.kafka.offsetsReplicationFactor }}
+      transaction.state.log.replication.factor: {{ .Values.kafka.transactionReplicationFactor }}
+      transaction.state.log.min.isr: {{ .Values.kafka.transactionMinIsr }}
+      default.replication.factor: {{ .Values.kafka.defaultReplicationFactor }}
+      min.insync.replicas: {{ .Values.kafka.minInsyncReplicas }}
+      inter.broker.protocol.version: "{{ .Values.kafka.interBrokerProtocolVersion }}"
+    storage:
+      type: {{ .Values.kafka.storageType }}
+      volumes:
+      - id: {{ .Values.kafka.storageId }}
+        type: persistent-claim
+        size: {{ .Values.kafka.storageSize }}
+        deleteClaim: {{ .Values.kafka.deleteClaim }}
+    livenessProbe:
+      initialDelaySeconds: {{ .Values.kafka.livenessProbeInitialDelay }}
+      timeoutSeconds: {{ .Values.kafka.livenessProbeTimeout }}
+    readinessProbe:
+      initialDelaySeconds: {{ .Values.kafka.readinessProbeInitialDelay }}
+      timeoutSeconds: {{ .Values.kafka.readinessProbeTimeout }}
+  zookeeper:
+    replicas: {{ .Values.zookeeper.replicas }}
+    storage:
+      type: {{ .Values.zookeeper.storageType }}
+      size: {{ .Values.zookeeper.storageSize }}
+      deleteClaim: {{ .Values.zookeeper.deleteClaim }}
+  entityOperator:
+    topicOperator: {}
+    userOperator: {}

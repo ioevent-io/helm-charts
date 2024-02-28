@@ -1,0 +1,9 @@
+apiVersion: v2
+name: ioevent-minimum
+description: helm chart that installs just ioeventcokpit api and ui
+
+type: application
+
+version: 0.1.0
+
+appVersion: "1.16.0"

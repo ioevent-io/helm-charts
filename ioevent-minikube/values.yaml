@@ -1,0 +1,85 @@
+kafka:
+  name: my-cluster
+  version: 3.6.1
+  replicas: 1
+  plainListenerPort: 9092
+  tlsListenerPort: 9093
+  externalListenerPort: 9094
+  listenerType: nodeport
+  offsetsReplicationFactor: 1
+  transactionReplicationFactor: 1
+  transactionMinIsr: 1
+  defaultReplicationFactor: 1
+  minInsyncReplicas: 1
+  interBrokerProtocolVersion: "3.6"
+  storageType: jbod
+  storageId: 0
+  storageSize: 200Mi
+  deleteClaim: false
+  livenessProbeInitialDelay: 60
+  livenessProbeTimeout: 5
+  readinessProbeInitialDelay: 60
+  readinessProbeTimeout: 5
+
+zookeeper:
+  replicas: 1
+  storageType: persistent-claim
+  storageSize: 200Mi
+  deleteClaim: false
+
+ioeventui:
+  name: ioeventui
+  image: ioevent/cockpit-ui:latest
+  replicas: 1
+  containerPort: 3000
+  apiUrl: "http://ioeventcockpitapi.com/api"
+  uiRegistration: "true#####"
+
+ioeventuiservice:
+  name: ioeventui-service
+  port: 3000
+  targetPort: 3000
+  serviceType: NodePort
+
+elasticsearch:
+  name: elasticsearch
+  image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0
+  replicas: 1
+  containerPort: 9200
+  discoveryType: single-node
+
+elasticsearchservice:
+  name: elasticsearch-service
+  serviceType: NodePort
+  port: 9200
+  targetPort: 9200
+  nodePort: 30200
+
+ioeventCockpitApi:
+  name: ioevent-cockpit-api
+  image: ioevent/cockpit-api:latest
+  replicas: 1
+  containerPort: 8761
+  esUrl: http://elasticsearch-service:9200
+  kafkaBootstrapServer: my-cluster-kafka-bootstrap:9092
+  kafkaGroupId: ioevent-cockpit-api
+  readinessProbePath: /api/ping
+  livenessProbePath: /api/ping
+  readinessProbeInitialDelay: 30
+  livenessProbeInitialDelay: 60
+
+ioeventCockpitApiService:
+  name: ioevent-cockpit-api-service
+  serviceType: LoadBalancer
+  port: 8761
+  targetPort: 8761
+  nodePort: 30003
+
+ingress:
+  name: my-ingress
+  host: ioeventcockpitapi.com
+  backendServiceName: ioevent-cockpit-api-service
+  backendServicePort: 8761
+  ingressClass: "nginx"
+  pathType: Prefix
+  path: "/"
