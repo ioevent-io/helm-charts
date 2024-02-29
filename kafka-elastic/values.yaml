@@ -1,6 +1,6 @@
 kafka:
   name: my-cluster
-  version: 3.6.1
+  version: 3.2.0
   replicas: 1
   plainListenerPort: 9092
   tlsListenerPort: 9093
@@ -11,7 +11,7 @@ kafka:
   transactionMinIsr: 1
   defaultReplicationFactor: 1
   minInsyncReplicas: 1
-  interBrokerProtocolVersion: "3.6"
+  interBrokerProtocolVersion: "3.2"
   storageType: ephemeral
   livenessProbeInitialDelay: 60
   livenessProbeTimeout: 5
