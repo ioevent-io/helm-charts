@@ -21,6 +21,10 @@ kafka:
 zookeeper:
   replicas: 1
   storageType: ephemeral
+  livenessProbeInitialDelay: 300
+  livenessProbeTimeout: 5
+  readinessProbeInitialDelay: 300
+  readinessProbeTimeout: 5
 
 
 elasticsearch:
