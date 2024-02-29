@@ -28,11 +28,6 @@ spec:
       inter.broker.protocol.version: "{{ .Values.kafka.interBrokerProtocolVersion }}"
     storage:
       type: {{ .Values.kafka.storageType }}
-      volumes:
-      - id: {{ .Values.kafka.storageId }}
-        type: persistent-claim
-        size: {{ .Values.kafka.storageSize }}
-        deleteClaim: {{ .Values.kafka.deleteClaim }}
     livenessProbe:
       initialDelaySeconds: {{ .Values.kafka.livenessProbeInitialDelay }}
       timeoutSeconds: {{ .Values.kafka.livenessProbeTimeout }}
@@ -43,8 +38,6 @@ spec:
     replicas: {{ .Values.zookeeper.replicas }}
     storage:
       type: {{ .Values.zookeeper.storageType }}
-      size: {{ .Values.zookeeper.storageSize }}
-      deleteClaim: {{ .Values.zookeeper.deleteClaim }}
   entityOperator:
     topicOperator: {}
     userOperator: {}

@@ -30,6 +30,5 @@ spec:
   ports:
     - port: {{ .Values.elasticsearchservice.port }}
       targetPort: {{ .Values.elasticsearchservice.targetPort }}
-      nodePort: {{ .Values.elasticsearchservice.nodePort }}
   selector:
     app: {{ .Values.elasticsearch.name }}

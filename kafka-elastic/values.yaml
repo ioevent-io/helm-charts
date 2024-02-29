@@ -12,10 +12,7 @@ kafka:
   defaultReplicationFactor: 1
   minInsyncReplicas: 1
   interBrokerProtocolVersion: "3.6"
-  storageType: jbod
-  storageId: 0
-  storageSize: 200Mi
-  deleteClaim: false
+  storageType: ephemeral
   livenessProbeInitialDelay: 60
   livenessProbeTimeout: 5
   readinessProbeInitialDelay: 60
@@ -23,9 +20,7 @@ kafka:
 
 zookeeper:
   replicas: 1
-  storageType: persistent-claim
-  storageSize: 200Mi
-  deleteClaim: false
+  storageType: ephemeral
 
 
 elasticsearch:
@@ -40,4 +35,3 @@ elasticsearchservice:
   serviceType: NodePort
   port: 9200
   targetPort: 9200
-  nodePort: 30200
