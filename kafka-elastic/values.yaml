@@ -17,6 +17,13 @@ kafka:
   livenessProbeTimeout: 5
   readinessProbeInitialDelay: 60
   readinessProbeTimeout: 5
+  resources:
+    requests:
+      cpu: "1"
+      memory: "2Gi"
+    limits:
+      cpu: "2"
+      memory: "4Gi"
 
 zookeeper:
   replicas: 1
@@ -33,6 +40,13 @@ elasticsearch:
   replicas: 1
   containerPort: 9200
   discoveryType: single-node
+  resources:
+    requests:
+      cpu: "1"
+      memory: "2Gi"
+    limits:
+      cpu: "2"
+      memory: "4Gi"  
 
 elasticsearchservice:
   name: elasticsearch-service

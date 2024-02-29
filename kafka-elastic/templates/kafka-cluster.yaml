@@ -36,11 +36,11 @@ spec:
       timeoutSeconds: {{ .Values.kafka.readinessProbeTimeout }}
     resources:
       requests:
-        cpu: "1"
-        memory: "2Gi"
+        cpu: "{{ .Values.kafka.resources.requests.cpu }}"
+        memory: "{{ .Values.kafka.resources.requests.memory }}"
       limits:
-        cpu: "2"
-        memory: "4Gi"
+        cpu: "{{ .Values.kafka.resources.limits.cpu }}"
+        memory:  "{{ .Values.kafka.resources.limits.memory }}"
   zookeeper:
     replicas: {{ .Values.zookeeper.replicas }}
     storage:
