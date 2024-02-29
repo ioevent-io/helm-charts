@@ -35,7 +35,8 @@ spec:
       initialDelaySeconds: {{ .Values.kafka.readinessProbeInitialDelay }}
       timeoutSeconds: {{ .Values.kafka.readinessProbeTimeout }}
     jvmOptions:
-      - "-Xmx3G"
+      - "-Xmx3g"
+      - "-Xms3g"
   zookeeper:
     replicas: {{ .Values.zookeeper.replicas }}
     storage:
