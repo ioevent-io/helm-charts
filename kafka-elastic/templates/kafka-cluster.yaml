@@ -34,9 +34,13 @@ spec:
     readinessProbe:
       initialDelaySeconds: {{ .Values.kafka.readinessProbeInitialDelay }}
       timeoutSeconds: {{ .Values.kafka.readinessProbeTimeout }}
-    jvmOptions:
-      "-Xmx": "3g"
-      "-Xms": "400m"
+    resources:
+      requests:
+        cpu: "1"
+        memory: "2Gi"
+      limits:
+        cpu: "2"
+        memory: "4Gi"
   zookeeper:
     replicas: {{ .Values.zookeeper.replicas }}
     storage:

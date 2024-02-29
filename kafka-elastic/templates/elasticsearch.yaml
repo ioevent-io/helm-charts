@@ -18,6 +18,13 @@ spec:
         env:
         - name: discovery.type
           value: {{ .Values.elasticsearch.discoveryType }}
+        resources:
+          requests:
+            cpu: "1"
+            memory: "2Gi"
+          limits:
+            cpu: "2"
+            memory: "4Gi"
         ports:
         - containerPort: {{ .Values.elasticsearch.containerPort }}
 ---

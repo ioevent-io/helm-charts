@@ -4,7 +4,7 @@ description: a helm chart that installs elasticsearch and kafka using strimzi op
 
 dependencies:
 - name: strimzi-kafka-operator
-  version: 0.32.0
+  version: 0.39.0
   repository: https://strimzi.io/charts/
 
 type: application
