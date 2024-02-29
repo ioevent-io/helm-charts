@@ -38,6 +38,12 @@ spec:
     replicas: {{ .Values.zookeeper.replicas }}
     storage:
       type: {{ .Values.zookeeper.storageType }}
+    livenessProbe:
+      initialDelaySeconds: {{ .Values.zookeeper.livenessProbeInitialDelay }}
+      timeoutSeconds: {{ .Values.zookeeper.livenessProbeTimeout }}
+    readinessProbe:
+      initialDelaySeconds: {{ .Values.zookeeper.readinessProbeInitialDelay }}
+      timeoutSeconds: {{ .Values.zookeeper.readinessProbeTimeout }}
   entityOperator:
     topicOperator: {}
     userOperator: {}
