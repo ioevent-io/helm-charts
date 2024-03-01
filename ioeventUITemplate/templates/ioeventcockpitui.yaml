@@ -1,4 +1,3 @@
-{{ if .Values.ioeventui.deploy }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -30,9 +29,8 @@ spec:
           value: "{{ .Values.ioeventui.apiUrl }}"
         - name: COCKPit_UI_REGISTRATION
           value: "{{ .Values.ioeventui.uiRegistration }}"
-{{end}}
+
 ---
-{{ if .Values.ioeventuiservice.deploy }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -49,4 +47,3 @@ spec:
     port: {{ .Values.ioeventuiservice.port }}
     targetPort: {{ .Values.ioeventuiservice.targetPort }}
   type: {{ .Values.ioeventuiservice.serviceType }}
-{{end}}
