@@ -23,7 +23,6 @@ ioeventCockpitApiService:
   serviceType: LoadBalancer
   port: 8761
   targetPort: 8761
-  nodePort: 30003
 
 ioeventui:
   name: ioeventui
@@ -44,4 +43,4 @@ ioeventuiservice:
   name: ioeventui-service
   port: 3000
   targetPort: 3000
-  serviceType: NodePort
+  serviceType: LoadBalancer
