@@ -18,7 +18,7 @@ spec:
       - name: external
         port: {{ .Values.kafka.externalListenerPort }}
         type: route
-        tls: false
+        tls: true
     config:
       offsets.topic.replication.factor: {{ .Values.kafka.offsetsReplicationFactor }}
       transaction.state.log.replication.factor: {{ .Values.kafka.transactionReplicationFactor }}
