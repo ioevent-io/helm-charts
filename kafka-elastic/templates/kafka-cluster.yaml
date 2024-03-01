@@ -17,7 +17,7 @@ spec:
         tls: true
       - name: external
         port: {{ .Values.kafka.externalListenerPort }}
-        type: {{ .Values.kafka.listenerType }}
+        type: loadbalancer
         tls: false
     config:
       offsets.topic.replication.factor: {{ .Values.kafka.offsetsReplicationFactor }}
