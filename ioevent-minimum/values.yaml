@@ -10,6 +10,13 @@ ioeventCockpitApi:
   livenessProbePath: /api/ping
   readinessProbeInitialDelay: 30
   livenessProbeInitialDelay: 60
+  resources:
+    requests:
+      memory: "3Gi"
+      cpu: "1"
+    limits:
+      memory: "4Gi"
+      cpu: "2"
 
 ioeventCockpitApiService:
   name: ioevent-cockpit-api-service
@@ -25,6 +32,13 @@ ioeventui:
   containerPort: 3000
   apiUrl: "http://ioeventcockpitapi.com/api"
   uiRegistration: "true#####"
+  resources:
+    requests:
+      memory: "3Gi"
+      cpu: "1"
+    limits:
+      memory: "4Gi"
+      cpu: "2"
 
 ioeventuiservice:
   name: ioeventui-service

@@ -17,6 +17,13 @@ spec:
       containers:
       - name: {{ .Values.ioeventCockpitApi.name }}
         image: {{ .Values.ioeventCockpitApi.image }}
+        resources:
+          requests:
+            memory: "{{ .Values.ioeventCockpitApi.resources.requests.memory }}"
+            cpu: "{{ .Values.ioeventCockpitApi.resources.requests.cpu }}"
+          limits:
+            memory: "{{ .Values.ioeventCockpitApi.resources.limits.memory }}"
+            cpu: "{{ .Values.ioeventCockpitApi.resources.limits.cpu }}"
         ports:
         - containerPort: {{ .Values.ioeventCockpitApi.containerPort }}
         env:

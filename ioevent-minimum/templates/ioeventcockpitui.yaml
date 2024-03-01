@@ -15,6 +15,13 @@ spec:
       containers:
       - name: {{ .Values.ioeventui.name }}
         image: {{ .Values.ioeventui.image }}
+        resources:
+          requests:
+            memory: "{{ .Values.ioeventui.resources.requests.memory }}"
+            cpu: "{{ .Values.ioeventui.resources.requests.cpu }}"
+          limits:
+            memory: "{{ .Values.ioeventui.resources.limits.memory }}"
+            cpu: "{{ .Values.ioeventui.resources.limits.cpu }}"
         ports:
         - containerPort: {{ .Values.ioeventui.containerPort }}
         env:
