@@ -17,13 +17,8 @@ spec:
         tls: true
       - name: external
         port: {{ .Values.kafka.externalListenerPort }}
-        type: loadbalancer
-        tls: true
-        configuration:
-          annotations:
-            service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
-            service.beta.kubernetes.io/aws-load-balancer-type: external
-            service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+        type: {{ .Values.kafka.listenerType }}
+        tls: false
     config:
       offsets.topic.replication.factor: {{ .Values.kafka.offsetsReplicationFactor }}
       transaction.state.log.replication.factor: {{ .Values.kafka.transactionReplicationFactor }}
