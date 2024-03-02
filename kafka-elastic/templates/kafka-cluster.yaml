@@ -19,6 +19,15 @@ spec:
         port: {{ .Values.kafka.externalListenerPort }}
         type: loadbalancer
         tls: false
+    template:
+      externalBootstrapService:
+        metadata:
+          annotations:
+            service.beta.kubernetes.io/aws-load-balancer-type: nlb
+      perPodService:
+        metadata:
+          annotations:
+            service.beta.kubernetes.io/aws-load-balancer-type: nlb
     config:
       offsets.topic.replication.factor: {{ .Values.kafka.offsetsReplicationFactor }}
       transaction.state.log.replication.factor: {{ .Values.kafka.transactionReplicationFactor }}
