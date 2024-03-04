@@ -1,6 +1,6 @@
 apiVersion: v2
 name: kafka-elastic
-description: a helm chart that installs elasticsearch and kafka using strimzi operator
+description: a helm chart that installs kafka using strimzi operator
 
 dependencies:
 - name: strimzi-kafka-operator

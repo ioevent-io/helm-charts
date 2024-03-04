@@ -23,26 +23,4 @@ ioeventCockpitApiService:
   serviceType: LoadBalancer
   port: 8761
   targetPort: 8761
-
-ioeventui:
-  name: ioeventui
-  image: ioevent/cockpit-ui:latest
-  replicas: 1
-  containerPort: 3000
-  apiUrl: "http://ioeventcockpitapi.com/api"
-  uiRegistration: "true#####"
-  resources:
-    requests:
-      memory: "3Gi"
-      cpu: "1"
-    limits:
-      memory: "4Gi"
-      cpu: "2"
-  deploy: false
-
-ioeventuiservice:
-  name: ioeventui-service
-  port: 3000
-  targetPort: 3000
-  serviceType: LoadBalancer
-  deploy: false
+  
