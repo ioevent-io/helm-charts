@@ -18,6 +18,10 @@ spec:
         env:
         - name: discovery.type
           value: {{ .Values.elasticsearch.discoveryType }}
+        - name: xpack.security.enabled
+          value: "false"
+        - name: xpack.security.enrollment.enabled
+          value: "false"
         resources:
           requests:
             cpu: "{{ .Values.elasticsearch.resources.requests.cpu }}"
