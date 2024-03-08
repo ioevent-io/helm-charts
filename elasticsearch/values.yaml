@@ -7,10 +7,10 @@ elasticsearch:
   resources:
     requests:
       cpu: "1"
-      memory: "2Gi"
+      memory: "1Gi"
     limits:
       cpu: "2"
-      memory: "4Gi"  
+      memory: "2Gi"
 
 elasticsearchservice:
   name: elasticsearch-service
