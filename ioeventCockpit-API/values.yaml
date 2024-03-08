@@ -1,6 +1,6 @@
 ioeventCockpitApi:
   name: ioevent-cockpit-api
-  image: jesserabidelli/cockpit:1.0.0
+  image: ioevent/cockpit-api:latest
   replicas: 1
   containerPort: 8761
   esUrl: http://elasticsearch-service:9200

@@ -33,10 +33,6 @@ spec:
           value: {{ .Values.ioeventCockpitApi.kafkaBootstrapServer }}
         - name: KAFKA_GROUP_ID
           value: {{ .Values.ioeventCockpitApi.kafkaGroupId }}
-        - name: KAFKA_SECURITY_PROTOCOL
-          value: PLAINTEXT
-        - name: KAFKA_JAAS_ENABLED
-          value: "false"
         readinessProbe:
           httpGet:
             path: {{ .Values.ioeventCockpitApi.readinessProbePath }}
