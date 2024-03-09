@@ -64,6 +64,3 @@ spec:
     readinessProbe:
       initialDelaySeconds: {{ .Values.zookeeper.readinessProbeInitialDelay }}
       timeoutSeconds: {{ .Values.zookeeper.readinessProbeTimeout }}
-  entityOperator:
-    topicOperator: {}
-    userOperator: {}
