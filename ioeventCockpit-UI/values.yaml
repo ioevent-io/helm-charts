@@ -3,7 +3,7 @@ ioeventui:
   image: ioevent/cockpit-ui:latest
   replicas: 1
   containerPort: 3000
-  apiUrl: "http://k8s-helmchar-ioeventc-916125f9ee-30c5d6e37c2826b3.elb.eu-central-1.amazonaws.com:8761/api"
+  apiUrl: "http://k8s-helmchar-ioeventc-c652dc5b90-4d2ec304b475194c.elb.eu-central-1.amazonaws.com:8761/api"
   uiRegistration: "true#####"
   resources:
     requests:
