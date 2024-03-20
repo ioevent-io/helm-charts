@@ -29,6 +29,16 @@ spec:
           value: "{{ .Values.ioeventui.apiUrl }}"
         - name: COCKPit_UI_REGISTRATION
           value: "{{ .Values.ioeventui.uiRegistration }}"
+        - name: REACT_APP_ENABLE_SSO
+          value: "{{ .Values.ioeventui.enableSSO }}"
+        - name: REACT_APP_SSO_URL
+          value: "{{ .Values.ioeventui.ssoUrl }}"
+        - name: REACT_APP_CLIENT_ID
+          value: "{{ .Values.ioeventui.clientId }}"
+        - name: REACT_APP_REDIRECT_URI
+          value: "{{ .Values.ioeventui.redirectUri }}"
+        - name: REACT_APP_RESPONSE_TYPE
+          value: "{{ .Values.ioeventui.responseType }}"
 
 ---
 apiVersion: v1

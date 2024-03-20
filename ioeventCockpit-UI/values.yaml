@@ -12,6 +12,11 @@ ioeventui:
     limits:
       memory: "2Gi"
       cpu: "2"
+  enableSSO: "true"
+  ssoUrl: https://github.com/login/oauth/authorize
+  clientId: 7a85924d095028b88070
+  redirectUri: http://localhost:3000/pages/auth/sso
+  responseType: code
 
 ioeventuiservice:
   name: ioeventui-service

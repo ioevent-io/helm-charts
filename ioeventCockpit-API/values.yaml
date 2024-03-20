@@ -17,7 +17,13 @@ ioeventCockpitApi:
     limits:
       memory: "2Gi"
       cpu: "2"
-
+  oauthClientId: 7a85924d095028b88070
+  oauthClientSecret: 0ef177b2bf265fd9c0ec7856183151a105a58cb2
+  oauthAccessTokenUri: https://github.com/login/oauth/access_token
+  oauthUserInfoUri: https://api.github.com/user
+  oauthPreferredUsername: login
+  oauthEmail: email
+  oauthRedirectUri: http://localhost:3000/pages/auth/sso
 ioeventCockpitApiService:
   name: ioevent-cockpit-api-service
   serviceType: LoadBalancer

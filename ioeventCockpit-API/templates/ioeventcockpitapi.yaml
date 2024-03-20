@@ -33,6 +33,20 @@ spec:
           value: {{ .Values.ioeventCockpitApi.kafkaBootstrapServer }}
         - name: KAFKA_GROUP_ID
           value: {{ .Values.ioeventCockpitApi.kafkaGroupId }}
+        - name: OAUTH_CLIENT_ID
+          value: {{ .Values.ioeventCockpitApi.oauthClientId }}
+        - name: OAUTH_CLIENT_SECRET
+          value: {{ .Values.ioeventCockpitApi.oauthClientSecret }}
+        - name: OAUTH_ACCESS_TOKEN_URI
+          value: {{ .Values.ioeventCockpitApi.oauthAccessTokenUri }}
+        - name: OAUTH_USER_INFO_URI
+          value: {{ .Values.ioeventCockpitApi.oauthUserInfoUri }}
+        - name: OAUTH_PREFERRED_USERNAME
+          value: {{ .Values.ioeventCockpitApi.oauthPreferredUsername }}
+        - name: OAUTH_EMAIL
+          value: {{ .Values.ioeventCockpitApi.oauthEmail }}
+        - name: OAUTH_REDIRECT_URI
+          value: {{ .Values.ioeventCockpitApi.oauthRedirectUri }}
         readinessProbe:
           httpGet:
             path: {{ .Values.ioeventCockpitApi.readinessProbePath }}
