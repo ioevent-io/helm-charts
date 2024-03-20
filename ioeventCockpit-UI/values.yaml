@@ -3,7 +3,7 @@ ioeventui:
   image: jesserabidelli/cockpitui:1.0.2
   replicas: 1
   containerPort: 3000
-  apiUrl: "http://k8s-helmchar-ioeventc-c652dc5b90-4d2ec304b475194c.elb.eu-central-1.amazonaws.com:8761/api"
+  apiUrl: "http://k8s-helmchar-ioeventc-2a7cf0621c-92705e09b0d31192.elb.eu-central-1.amazonaws.com:8761/api"
   uiRegistration: "true#####"
   resources:
     requests:
