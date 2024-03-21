@@ -14,6 +14,6 @@ elasticsearch:
 
 elasticsearchservice:
   name: elasticsearch-service
-  serviceType: NodePort
+  serviceType: LoadBalancer
   port: 9200
   targetPort: 9200
