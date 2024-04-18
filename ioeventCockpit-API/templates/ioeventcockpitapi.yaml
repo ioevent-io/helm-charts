@@ -88,4 +88,4 @@ spec:
     matchLabels:
       app: {{ .Values.ioeventCockpitApiService.name }}
   endpoints:
-  - port: 8761
+  - port: "8761"
