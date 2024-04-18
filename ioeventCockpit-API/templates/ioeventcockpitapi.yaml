@@ -87,4 +87,4 @@ spec:
       app: {{ .Values.ioeventCockpitApiService.name }}
   endpoints:
   - port: "8761"
-    path: /actuator/metrics
+    path: /actuator/prometheus
