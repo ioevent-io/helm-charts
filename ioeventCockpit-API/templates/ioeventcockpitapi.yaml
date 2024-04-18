@@ -78,3 +78,14 @@ spec:
     - protocol: TCP
       port: {{ .Values.ioeventCockpitApiService.port }}
       targetPort: {{ .Values.ioeventCockpitApiService.targetPort }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: IOEventCockpitService
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.ioeventCockpitApiService.name }}
+  endpoints:
+  - port: 8761
