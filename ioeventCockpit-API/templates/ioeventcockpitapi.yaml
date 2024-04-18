@@ -82,7 +82,7 @@ spec:
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: IOEventCockpitService
+  name: ioeventcockpitservice
 spec:
   selector:
     matchLabels:
