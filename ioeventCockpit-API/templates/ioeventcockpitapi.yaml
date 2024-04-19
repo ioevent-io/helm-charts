@@ -86,7 +86,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: {{ .Values.ioeventCockpitApi.name }}
+      name: {{ .Values.ioeventCockpitApi.name }}
   endpoints:
   - port: "8761"
     path: /actuator/prometheus
