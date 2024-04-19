@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: {{ .Values.ioeventCockpitApi.name }}
   labels:
-    app.kubernetes.io/name: {{ .Values.ioeventCockpitApi.name }}
+    app.kubernetes.io/app: {{ .Values.ioeventCockpitApi.name }}
 spec:
   replicas: {{ .Values.ioeventCockpitApi.replicas }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ .Values.ioeventCockpitApi.name }}
+      app.kubernetes.io/app: {{ .Values.ioeventCockpitApi.name }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ .Values.ioeventCockpitApi.name }}
+        app.kubernetes.io/app: {{ .Values.ioeventCockpitApi.name }}
     spec:
       containers:
       - name: {{ .Values.ioeventCockpitApi.name }}
@@ -70,10 +70,11 @@ metadata:
     service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
 spec:
   selector:
-    app.kubernetes.io/name: {{ .Values.ioeventCockpitApi.name }}
+    app.kubernetes.io/app: {{ .Values.ioeventCockpitApi.name }}
   type: {{ .Values.ioeventCockpitApiService.serviceType }}
   ports:
     - protocol: TCP
+      name: http-actuator-metrics
       port: {{ .Values.ioeventCockpitApiService.port }}
       targetPort: {{ .Values.ioeventCockpitApiService.targetPort }}
 ---
@@ -86,7 +87,8 @@ metadata:
 spec:
   selector:
     matchLabels:
-      name: {{ .Values.ioeventCockpitApi.name }}
+      app: {{ .Values.ioeventCockpitApi.name }}
   endpoints:
-  - port: "8761"
+  - port: http-actuator-metrics
     path: /actuator/prometheus
+    scheme: http
