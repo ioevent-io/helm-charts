@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.ioeventui.name }}
     annotations:
       downscaler/downtimePeriod: "Mon-Sun 19:45-:19:55 Europe/Paris"
-		  downscaler/minReplicas: 0
+      downscaler/minReplicas: 0
 spec:
   replicas: {{ .Values.ioeventui.replicas }}
   selector:
