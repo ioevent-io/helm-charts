@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ .Values.ioeventui.name }}
   annotations:
-    downscaler/downscale-period: "Mon-Sun 22:16-:22:30 Europe/Berlin"
+    downscaler/downscale-period: "Mon-Sun 22:22:22:30 Europe/Berlin"
 spec:
   replicas: {{ .Values.ioeventui.replicas }}
   selector:
